@@ -46,3 +46,44 @@ docker build -t monserveurapache .
 ## Une fois l'image construite, démarrer un conteneur en utilisant cette image
 docker run -d -p 80:80 --name mon-conteneur-apache monserveurapache
 
+# TP Docker avec docker-compose
+
+## a. Qu'est-ce que `docker-compose` et pourquoi l'utiliser ?
+   La commande `docker-compose` est utilisée pour définir et exécuter des applications multi-conteneurs avec Docker. Au lieu de devoir utiliser plusieurs commandes `docker run` pour démarrer vos conteneurs, vous pouvez les définir tous dans un fichier YAML (par défaut `docker-compose.yml`) et les démarrer avec une seule commande. Cela permet une configuration plus facile et reproductible de vos applications, surtout lorsqu'elles dépendent de plusieurs services.
+
+## b. Quelles sont les commandes pour démarrer et arrêter tous les conteneurs définis dans un fichier Docker Compose ?
+   Pour démarrer tous les conteneurs définis dans un fichier Docker Compose, vous utilisez la commande :
+   ```
+   docker-compose up
+   ```
+   Pour arrêter tous les conteneurs lancés à l'aide de Docker Compose, vous utilisez la commande :
+   ```
+   docker-compose down
+   ```
+
+## c. Pouvez-vous fournir un exemple de fichier `docker-compose.yml` pour démarrer une base de données (MySQL ou MariaDB) et phpMyAdmin ?
+   Voici un exemple de fichier `docker-compose.yml` pour démarrer une base de données (MySQL ou MariaDB) et phpMyAdmin :
+   ```yaml
+   version: '3.1'
+
+   services:
+     db:
+       image: mysql
+       restart: always
+       environment:
+         MYSQL_ROOT_PASSWORD: example
+       volumes:
+         - db_data:/var/lib/mysql
+
+     phpmyadmin:
+       image: phpmyadmin/phpmyadmin
+       restart: always
+       ports:
+         - "8080:80"
+       environment:
+         PMA_HOST: db
+         MYSQL_ROOT_PASSWORD: example
+
+   volumes:
+     db_data:
+   ```
