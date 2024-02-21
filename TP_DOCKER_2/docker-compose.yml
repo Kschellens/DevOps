@@ -16,7 +16,6 @@ services:
 
   db:
     image: mysql:latest
-    restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=maBaseDeDonnees
@@ -29,3 +28,4 @@ services:
 
 volumes:
   db_data:
+
