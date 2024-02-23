@@ -26,3 +26,37 @@ module.exports = {
 ## 4 Rebuildez votre image docker et relancez un conteneur, vérifiez que vous arrivez à utiliser l'app (le code explique comment faire pour utiliser une base MySQL plutôt qu'une base SQLite).
 
 docker-compose up -d --build
+
+## 5 Créer un fichier docker-compose.yml pour configurer les services Node et DB
+
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=root
+      - DB_NAME=maBaseDeDonnees
+      - DB_PORT=3306
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=maBaseDeDonnees
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+
+volumes:
+  db_data:
+
