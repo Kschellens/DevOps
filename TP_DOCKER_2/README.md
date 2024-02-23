@@ -23,11 +23,11 @@ module.exports = {
     dialect: "mysql"
 };
 
-## 4 Rebuildez votre image docker et relancez un conteneur, vérifiez que vous arrivez à utiliser l'app (le code explique comment faire pour utiliser une base MySQL plutôt qu'une base SQLite).
+## 4 Rebuildez votre image docker et relancez un conteneur, vérifiez que vous arrivez à utiliser l'app.
 
 docker-compose up -d --build
 
-## 5 Créer un fichier docker-compose.yml pour configurer les services Node et DB
+## Créer un docker-compose.yml pour avoir 2 services (node et db) node doit se baser sur le build (votre Dockerfile) db doit se baser sur une image mariadb ou mysql
 
 version: '3.8'
 
@@ -60,3 +60,4 @@ services:
 volumes:
   db_data:
 
+## 6 Adapter docker-compose.yml pour l'utilisation de la base de données conteneurisée
