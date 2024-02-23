@@ -27,7 +27,9 @@ module.exports = {
 
 docker-compose up -d --build
 
-## Créer un docker-compose.yml pour avoir 2 services (node et db) node doit se baser sur le build (votre Dockerfile) db doit se baser sur une image mariadb ou mysql
+## 5 Créer un docker-compose.yml pour avoir 2 services (node et db) node doit se baser sur le build (votre Dockerfile) db doit se baser sur une image mariadb ou mysql
+
+## 6 Adapter docker-compose.yml pour l'utilisation de la base de données conteneurisée
 
 version: '3.8'
 
